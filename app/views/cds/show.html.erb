@@ -1,0 +1,123 @@
+
+ <div class="container">
+  <h2><%= @cd.bankname %></h2>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Old Rate</td>
+        <td><%= @cd.old_rate %>%</td>
+        <td>New Rate</td>
+        <td><%= sprintf('%.3f',@newcd.new_rate) %>%</td>
+      </tr>
+      <tr>
+        <td>Fees Paid</td>
+        <td>$<%= number_with_precision(@fees_paid, :precision => 2, :delimiter => ',') %></td>
+        <td>Fees Paid</td>
+        <td><%= sprintf('%.3f',@newcd.new_fee) %>%</td>
+      </tr>
+      <tr>
+        <td>Net Rate</td>
+        <td><%= @net_rate %>%</td>
+        <td>Net Rate</td>
+        <td><%= @new_net_rate %>%</td>
+      </tr>
+      <tr>
+        <td>Face of CD</td>
+        <td>$<%= number_with_precision(@cd.principal, :precision => 2, :delimiter => ',') %></td>
+        <td>Face of CD</td>
+        <td>$<%= number_with_precision(@cd.principal, :precision => 2, :delimiter => ',') %></td>
+      </tr>
+      <tr>
+        <td>Analysis Date</td>
+        <td><%= @analysis_date %></td>
+        <td>Open/Close Date</td>
+        <td><%= @analysis_date %></td>
+      </tr>
+      <tr>
+        <td>Maturity Date</td>
+        <td><%= @cd.maturity_date %></td>
+        <td>Analysis Date:</td>
+        <td><%= @new_analysis_date %></td>
+      </tr>
+      <tr>
+        <td>Remaining Term</td>
+        <td><%= @remaining_term.to_i %></td>
+        <td>Analysis Term:</td>
+        <td><%= @remaining_term.to_i %></td>
+      </tr>
+      <tr>
+        <td>Old CD Penalty </td>
+        <td><%= @cd.old_ewp %></td>
+        <td>Actual Mat Date: </td>
+        <td><%= @actual_mat_date %></td>
+      </tr>
+      <tr>
+        <td>Penalty $</td>
+        <td>$<%= number_with_precision(@ewp_calc, :precision => 2, :delimiter => ',') %></td>
+        <td>New Broker Fees Paid</td>
+        <td>$<%= number_with_precision(@new_broker_fees_paid, :precision => 2, :delimiter => ',') %></td>
+      </tr>
+      <tr>
+        <td>Broker Fees Paid</td>
+        <td>$<%= number_with_precision(@fees_paid, :precision => 2, :delimiter => ',') %></td>
+        <td>New CD Additional Days</td>
+        <td><%= @new_cd_additional_days.to_i %></td>
+      </tr>
+      <tr>
+        <td>Fees Remaining</td>
+        <td>$<%= number_with_precision(@fees_remaining, :precision => 2, :delimiter => ',') %></td>
+        <td>Old Cd Interest Lost</td>
+        <td>$0.00</td>
+
+      </tr>
+      <tr>
+        <td>Accrued Interest Lost</td>
+        <td>$0.00</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Accrued Interest</td>
+        <td>$0.00</td>
+        <td></td>
+        <td><%= @test %></td>
+      </tr>
+      <tr>
+        <td>Old CD Remaining $</td>
+        <td>$<%= number_with_precision(@old_cd_remaining, :precision => 2, :delimiter => ',') %></td>
+        <td>New CD Return</td>
+        <td>$<%= number_with_precision(@new_cd_return, :precision => 2, :delimiter => ',') %></td>
+      </tr>
+      <tr>
+        <td>Old CD Penalty</td>
+        <td><%= "----------->" %></td>
+        <td>Old CD Penalty</td>
+        <td>$<%= number_with_precision(@ewp_calc, :precision => 2, :delimiter => ',') %></td>
+      </tr>
+      <tr>
+        <td>Old CD Remaining Net $ </td>
+        <td>$<%= number_with_precision(@old_cd_net_remaining, :precision => 2, :delimiter => ',') %></td>
+        <td>new CD Remaining Net (Post Fees) </td>
+        <td>$<%= number_with_precision(@new_cd_net_remaining, :precision => 2, :delimiter => ',') %></td>
+      </tr>
+      <br>
+      </br>
+      <tr>
+        <td>Remaining Term Net Gain:</td>
+        <td>$ <%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div> 
+
+
+
+     

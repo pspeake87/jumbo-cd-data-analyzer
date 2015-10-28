@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Cd's</h2>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cds.each do |cd| %>
+      <tr>
+        <td><%= cd.id%> </td>
+        <td><%= link_to cd.bankname, cd %></td>
+        <td>$ <%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></td>
+      </tr>
+      <% end %>
+  </tbody>
+  </table>
+</div> 
