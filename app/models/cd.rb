@@ -1,11 +1,12 @@
 class Cd < ActiveRecord::Base
    
-   def calculate_fees_paid(cd, newcd)
-      ((cd.principal * (newcd.new_fee/100)) / 365) * (cd.old_cd_start_date(cd))
+
+   def calculate_fees_paid(cd)
+      ((cd.principal * (NewCd.last.new_fee/100)) / 365) * (cd.old_cd_start_date(cd))
    end
 
-   def calculate_net_rate(cd, newcd)
-      cd.old_rate - newcd.new_fee
+   def calculate_net_rate(cd)
+      cd.old_rate - NewCd.last.new_fee
       
    end
 
@@ -19,11 +20,11 @@ class Cd < ActiveRecord::Base
    end
 
    def calculate_ewp(cd)
-      @penalty = (cd.princ_old_rate(cd)) * cd.old_ewp
+      (cd.princ_old_rate(cd)) * cd.old_ewp
    end
 
-   def calculate_fees_remaining(cd, newcd)
-      ((cd.principal * (newcd.new_fee/100)) / 365) * self.calculate_remaining_term(cd)
+   def calculate_fees_remaining(cd)
+      ((cd.principal * (NewCd.last.new_fee/100)) / 365) * self.calculate_remaining_term(cd)
    end
 
    def calculate_cd_remaining(cd)
@@ -31,11 +32,11 @@ class Cd < ActiveRecord::Base
    end
 
    def calculate_cd_net_remaining(cd)
-      @old_cd_net = self.calculate_cd_remaining(cd) - self.calculate_ewp(cd)
+      self.calculate_cd_remaining(cd) - self.calculate_fees_remaining(cd)
    end
 
    def calculate_new_net_rate(cd)
-       cd.new_rate - cd.new_fee
+       NewCd.last.new_rate - NewCd.last.new_fee
    end
 
    def calculate_new_analysis_date(days)
@@ -46,26 +47,27 @@ class Cd < ActiveRecord::Base
       Date.today + 5.years
    end
 
-   def calculate_new_broker_fees_paid(cd, newcd)
-      ((cd.principal * (newcd.new_fee/100)) / 365) * self.new_total_days
+   def calculate_new_broker_fees_paid(cd)
+      ((cd.principal * (NewCd.last.new_fee/100)) / 365) * self.new_total_days
    end
 
    def calculate_new_cd_additional_days(cd)
       cd.new_total_days - self.calculate_remaining_term(cd)
    end
 
-   def calculate_new_cd_return(cd, newcd)
-      @net_return = ((cd.principal * (newcd.new_rate/100)) / 365) * self.calculate_remaining_term(cd)     
+   def calculate_new_cd_return(cd)
+      (((cd.principal * (NewCd.last.new_rate/100)) / 365) * self.calculate_remaining_term(cd))  -  self.calculate_fees_remaining(cd)
    end
 
-   def calculate_new_cd_net_remaining
-      @new_cd_net = @net_return - @penalty
+   def calculate_new_cd_net_remaining(cd)
+      self.calculate_new_cd_return(cd) - self.calculate_ewp(cd)
    end
 
-   def calculate_remaining_term_net_gain
-      @new_cd_net - @old_cd_net
+   def calculate_remaining_term_net_gain #(cd)
+      
+      self.calculate_new_cd_net_remaining(self) - calculate_cd_net_remaining(self)
    end
-   
+
    public
 
 

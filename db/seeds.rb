@@ -7,7 +7,7 @@ require 'faker'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-100.times do
+500.times do
 cd = Cd.create!(
     bankname: Faker::Name.name,
     old_rate: Faker::Number.between(1.00, 3.00),
