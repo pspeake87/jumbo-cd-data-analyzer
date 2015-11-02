@@ -5,6 +5,7 @@ gem 'rails', '4.2.3'
 group :production do
    gem 'pg'
    gem 'rails_12factor'
+   gem 'mysql2', '~> 0.3.18'
  end
  
  group :development do
