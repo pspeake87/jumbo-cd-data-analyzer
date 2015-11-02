@@ -1,12 +1,10 @@
 class CdsController < ApplicationController
   def index
     @cds = Cd.all
-    # @cdss = [] #Hash.new #("cds")
+    
     @cdss = @cds.map{|cd| {cd: cd, net_gain: cd.calculate_remaining_term_net_gain} }.sort_by{|cd| cd[:net_gain]}
 
-    # each do |cd|
-    #    @cdhash["#{cd}"] = cd.calculate_remaining_term_net_gain(cd)
-    # end
+   
   end
 
   def show
@@ -21,6 +19,7 @@ class CdsController < ApplicationController
     @old_cd_remaining = @cd.calculate_cd_remaining(@cd)
     @old_cd_net_remaining = @cd.calculate_cd_net_remaining(@cd)
     
+    
     @new_net_rate = @cd.calculate_new_net_rate(@cd)
     @new_analysis_date = @cd.calculate_new_analysis_date(@remaining_term)
     @actual_mat_date = @cd.calculate_actual_mat_date
@@ -30,4 +29,23 @@ class CdsController < ApplicationController
     @new_cd_net_remaining = @cd.calculate_new_cd_net_remaining(@cd)
     @remaining_term_net_gain = @cd.calculate_remaining_term_net_gain
   end
+
+  def edit
+     @cd = Cd.find(params[:id])
+     @newcd = NewCd.last
+  end
+  
+
+  def update
+     @cd = Cd.find(params[:id])
+
+     
+     if @cd.update_attributes(params.require(:cd).permit(:old_rate, :principal, :maturity_date, :old_ewp, :old_fee))
+       redirect_to @cd
+     else
+       flash[:error] = "Error saving cd. Please try again."
+       render :edit
+     end
+   end
+
 end

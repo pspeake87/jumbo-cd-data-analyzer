@@ -29,9 +29,29 @@ class NewCdsController < ApplicationController
      end
   end
 
+  def edit
+     session[:return_to] = request.referer
+     @newcd = NewCd.last
+  end
+  
+
+  def update
+     @newcd = NewCd.last
+    
+     
+     
+     if @newcd.update_attributes(newcd_params)
+       flash[:notice] = "Post was saved."
+       redirect_to session.delete(:return_to)
+     else
+       flash[:error] = "Error saving cd. Please try again."
+       render :edit
+     end
+   end
+
   private
 
 def newcd_params
-  params.require(:new_cd).permit(:new_rate, :new_fee)
+  params.require(:new_cd).permit(:new_rate, :new_fee, :new_term)
 end
 end

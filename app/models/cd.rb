@@ -44,7 +44,7 @@ class Cd < ActiveRecord::Base
    end
 
    def calculate_actual_mat_date
-      Date.today + 5.years
+      Date.today + NewCd.last.new_term.years
    end
 
    def calculate_new_broker_fees_paid(cd)

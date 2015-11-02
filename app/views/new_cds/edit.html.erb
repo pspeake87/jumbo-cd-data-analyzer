@@ -1,5 +1,5 @@
 <div class="col-md-8">
-     <%= form_for @new_cd do |f| %>
+     <%= form_for @newcd do |f| %>
       <div class="form-group">
         <%= f.label :new_rate %>
         <%= f.text_field :new_rate %>
@@ -10,11 +10,11 @@
        <%= f.text_field :new_fee %>
       </div>
 
-      <div class="form-group">
+       <div class="form-group">
        <%= f.label "#{:new_term} (in years)" %>
        <%= f.text_field :new_term %>
       </div>
  
-      <%= f.submit "Search" %>
+      <%= f.submit "Submit" %>
       <% end %>
 </div>
