@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$('#cds_search input').keyup( ->
+    $.get($("#cds_search").attr("action"), $("#cds_search").serialize(), null, 'script')
+    false
+  )

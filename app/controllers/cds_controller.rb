@@ -3,8 +3,8 @@ class CdsController < ApplicationController
     @cds = Cd.all
     
     @cdss = @cds.map{|cd| {cd: cd, net_gain: cd.calculate_remaining_term_net_gain} }.sort_by{|cd| cd[:net_gain]}
-
-   
+    
+    
   end
 
   def show

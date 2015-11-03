@@ -20,11 +20,11 @@ class NewCdsController < ApplicationController
      
      if @new_cd.save
        
-       flash[:notice] = "Post was saved."
+       
 
        redirect_to cds_path
      else
-       flash[:error] = "There was an error saving the post. Please try again."
+       flash[:error] = "There was an error saving the New Cd. Please try again."
        render :new
      end
   end
@@ -39,15 +39,26 @@ class NewCdsController < ApplicationController
      @newcd = NewCd.last
     
      
-     
-     if @newcd.update_attributes(newcd_params)
-       flash[:notice] = "Post was saved."
-       redirect_to session.delete(:return_to)
-     else
-       flash[:error] = "Error saving cd. Please try again."
-       render :edit
-     end
-   end
+     def update
+       respond_to do |format|
+        if  @newcd.update_attributes(newcd_params)
+           format.html { redirect_to plots_path, notice: 'Plot was successfully updated.' }
+           format.json { render: @newcd }
+           format.js
+        else
+           format.html { render action: 'edit' }
+           format.json { render json: @newcd.errors, status: :unprocessable_entity }
+    end
+  end
+end
+     #if @newcd.update_attributes(newcd_params)
+       #flash[:notice] = "New Cd was updated."
+       #redirect_to session.delete(:return_to)
+     #else
+      # flash[:error] = "Error saving cd. Please try again."
+       #render :edit
+     #end
+   #end
 
   private
 

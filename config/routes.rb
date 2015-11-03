@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :cds
 
   root to: 'new_cds#new'
+
+  
 end

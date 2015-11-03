@@ -11,6 +11,8 @@
   <%= link_to "Edit New Cd", edit_new_cd_path(@newcd), class: 'btn btn-success' %>
 </span>
 
+
+
   <table class="table table-condensed">
     <thead>
       <tr>
@@ -19,6 +21,9 @@
       </tr>
     </thead>
     <tbody>
+
+      
+
       <tr>
         <td></td>
         <th>Old CD</th>
@@ -47,9 +52,11 @@
       <tbody>
       <tr>
         <td>Old Rate</td>
-        <td><%= @cd.old_rate %>%</td>
+        <td><div contenteditable><%= @cd.old_rate %>%</div></td>
         <td>New Rate</td>
-        <td><%= sprintf('%.3f',@newcd.new_rate) %>%</td>
+        <td><div id="editable" contenteditable="true">
+  <%= sprintf('%.3f',@newcd.new_rate) %>
+ </div></td>
       </tr>
       <tr>
         <td>Fees Paid</td>
