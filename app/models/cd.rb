@@ -68,13 +68,13 @@ class Cd < ActiveRecord::Base
       self.calculate_new_cd_net_remaining(self) - calculate_cd_net_remaining(self)
    end
 
-    def self.search(search)
-    if search
-      where('name LIKE ?', "%#{search}%")
-    else
-      Cd.all
-    end
-  end
+   def self.search(search)
+       if search
+         where('bankname LIKE ?', "%#{search}%")
+       else
+         all
+       end
+   end
 
    public
 

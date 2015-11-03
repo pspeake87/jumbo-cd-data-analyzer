@@ -1,10 +1,10 @@
 class CdsController < ApplicationController
   def index
-    @cds = Cd.all
+    @cds = Cd.search(params[:search]).paginate(:per_page => 500, :page => params[:page])
     
     @cdss = @cds.map{|cd| {cd: cd, net_gain: cd.calculate_remaining_term_net_gain} }.sort_by{|cd| cd[:net_gain]}
     
-    
+
   end
 
   def show

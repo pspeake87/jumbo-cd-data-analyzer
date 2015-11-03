@@ -1,29 +1,17 @@
 <div class="container">
   <h2>CD's</h2>
 
+  
+  <%= form_tag cds_path, :method => 'get', :id => "cds_search", remote: true do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
 
+  <div id="cds"><%= render 'cds' %></div>
+<% end %>
    
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Bankname</th>
-        <th>Remaining Term Net Gain</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cdss.reverse.each do |cd| %>
-        
-         <tr>
-          <td><%= link_to cd[:cd].bankname, cd[:cd] %> </td>
-          <td>$<%= number_with_precision(cd[:net_gain] , :precision => 2, :delimiter => ',') %></td>
-          <td></td>
-         </tr>
-       <% end %>
-
-
-      
-  </tbody>
-  </table>
-
+   
+       
+   
 </div> 

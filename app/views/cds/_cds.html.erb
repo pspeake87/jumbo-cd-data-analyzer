@@ -1,0 +1,44 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Bankname</th>
+        <th>Remaining Term Net Gain</th>
+      </tr>
+    </thead>
+    <% if :name == nil %>
+
+    <tbody>
+      
+      <% for cd in @cds %>
+        
+         <tr>
+          <td><%= link_to cd.bankname, cd %> </td>
+          <td>$<%= number_with_precision(cd.calculate_remaining_term_net_gain, :precision => 2, :delimiter => ',') %></td>
+          <td></td>
+         </tr>
+       <% end %>
+    
+
+    </tbody>
+
+    <% else %>
+
+   
+      <tbody>
+          
+          <% @cdss.reverse.each do |cd| %>
+        
+             <tr>
+                <td><%= link_to cd[:cd].bankname, cd[:cd] %> </td>
+                <td>$<%= number_with_precision(cd[:net_gain] , :precision => 2, :delimiter => ',') %></td>
+                <td></td>
+             </tr>
+          <% end %>
+       
+    
+
+      </tbody>
+   
+    <% end %>
+  </table>
+  

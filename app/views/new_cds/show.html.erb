@@ -1,2 +1,15 @@
 <h1>NewCds#show</h1>
 <p>Find me in app/views/new_cds/show.html.erb</p>
+<tbody>
+      <% @cds.reverse.each do |cd| %>
+        
+         <tr>
+          <td><%= link_to cd[:cd].bankname, cd[:cd] %> </td>
+          <td>$<%= number_with_precision(cd[:net_gain] , :precision => 2, :delimiter => ',') %></td>
+          <td></td>
+         </tr>
+       <% end %>
+    
+
+    </tbody>
+  </table>
