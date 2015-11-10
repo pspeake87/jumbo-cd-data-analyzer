@@ -1,0 +1,3 @@
+class WelcomePolicy < ApplicationPolicy
+  
+end

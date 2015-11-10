@@ -4,10 +4,88 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.user-info {
-   margin-top: 9px;
- }
+
+.vertline {
+  border-right: 1px solid black;
+}
+
+.indent {
+  text-indent: 35px;
+}
+
+.table-condensed, tbody, tr, td {
+    
+    table-layout: fixed;
+    padding: 1px;
+    margin-bottom: 5px;
+    empty-cells: show;
+}
+
+.table-condensed > thead > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > tfoot > tr > td {
+  
+    padding: 1px;
+    margin-bottom: 1px;
+    
+
+}
+
+tr.tbb td {
+  
+ border-bottom:2pt solid black;
+}
+
+@media print{
+  #bkglight{background-color: #E0E0E0 !important;}
+  #bkg{background-color: #C0C0C0   !important;}
+  body{line-height: 1;}
+  #edit-button{ display:none;}
+  #navi{ display:none;}
+  
+}
+
+tr.success td {
+  border-bottom:1pt solid gray;
+}
+
+tr.danger td  {
+  border-bottom:1pt solid gray;
+}
+
+tr.boldbottom td {
+  
+  border-bottom:2pt solid black;
+}
+
+td.btmbord {
+  
+  border-bottom:1pt solid black;
+}
+
+.bodywelcome {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
  
- .nav {
-   margin-top: 5px;
- }
+@media(min-width:768px) {
+    body {
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+     <%= form_for @transaction do |f| %>
+
+      <div class="form-group">
+        <%= f.label :bankname %>
+        <%= f.text_field :bankname, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :old_rate %>
+        <%= f.text_field :old_rate, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+       <%= f.label :old_fee %>
+       <%= f.text_field :old_fee, class: 'form-control' %>
+      </div>
+
+       <div class="form-group">
+       <%= f.label :old_penalty %>
+       <%= f.text_field :old_penalty, class: 'form-control' %>
+       </div>
+    </div>
+
+
+    <div class="col-md-2">
+       <div class="form-group">
+        <%= f.label :principal %>
+        <%= f.text_field :principal, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :start_date %>
+        <%= f.date_field :start_date, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :maturity_date %>
+        <%= f.date_field :maturity_date, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :analysis_date %>
+        <%= f.date_field :analysis_date, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+      </div>
+
+      <%= f.submit "Submit" %>
+      <% end %>
+    </div>
+  </div>
+</div>

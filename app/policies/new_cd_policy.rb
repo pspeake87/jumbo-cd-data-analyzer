@@ -1,0 +1,2 @@
+class NewCdPolicy < ApplicationPolicy
+ end

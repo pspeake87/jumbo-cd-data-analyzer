@@ -26,24 +26,24 @@
   <table class="table table-condensed">
      <tbody>
       <tr>
-        <td><ins>Depository:</ins></td>
-        <td class="vertline">Placed on</td>
+        <td><ins><b>Depository:</b></ins></td>
+        <td class="vertline"><ins><b>Placed on</b></ins></td>
         
-        <td class="indent"><ins>Depository:</ins></td>
-        <td></td>
+        <td class="indent"><ins><b>Depository:</b></ins></td>
+        <td class="indent"><ins><b>Placed on</b></ins></td>
       </tr>
       <tr>
         <td class="btmbord"><%= @cd.bankname %></td>
-        <td class="vertline btmbord"><%= @analysis_date.strftime("%m/%d/%Y") %></td>
+        <td class="vertline btmbord"><%= @cd.start_date.strftime("%m/%d/%Y") %></td>
         
         <td class="indent btmbord"><%= @newcd.new_bankname%></td>
-        <td class="btmbord"></td>
+        <td class="indent btmbord"><%= @cd.analysis_date.strftime("%m/%d/%Y") %></td>
       </tr>
 
 
     <tr>
       <td>Old Rate</td>
-      <td class="vertline"><%= @cd.old_rate %>%</td>
+      <td class="vertline"><%= sprintf('%.3f',@cd.old_rate) %>%</td>
       
       <td class="indent">New Rate (<%=@newcd.new_term %> YR)</td>
       <td class="indent"><%= sprintf('%.3f',@newcd.new_rate) %>%</td>
@@ -57,7 +57,7 @@
     </tr>
     <tr>
       <td>Net Rate</td>
-      <td class="vertline"><%= @net_rate %>%</td>
+      <td class="vertline"><%= sprintf('%.3f',@net_rate) %>%</td>
       
       <td class="indent">Net Rate</td>
       <td class="indent"><%= number_with_precision(@new_net_rate, :precision => 3, :delimiter => ',') %>%</td>
@@ -71,17 +71,17 @@
     </tr>
     <tr>
       <td>Analysis Date</td>
-      <td class="vertline"><%= @analysis_date.strftime("%m/%d/%Y") %></td>
+      <td class="vertline"><%= @cd.analysis_date.strftime("%m/%d/%Y") %></td>
       
       <td class="indent">Open/Close Date</td>
-      <td class="indent"><%= @analysis_date.strftime("%m/%d/%Y") %></td>
+      <td class="indent"><%= @cd.analysis_date.strftime("%m/%d/%Y") %></td>
     </tr>
     <tr>
       <td class="tds">Maturity Date</td>
       <td class="vertline"><%= @cd.maturity_date.strftime("%m/%d/%Y") %></td>
       
       <td class="indent">Analysis Date:</td>
-      <td class="indent"><%= @new_analysis_date.strftime("%m/%d/%Y") %></td>
+      <td class="indent"><%= @cd.maturity_date.strftime("%m/%d/%Y") %></td>
     </tr>
     <tr>
       <td>Remaining Term</td>
@@ -92,7 +92,7 @@
     </tr>
     <tr>
       <td>Old CD Penalty Days </td>
-      <td class="vertline"><%= @cd.old_ewp %></td>
+      <td class="vertline"><%= @cd.old_penalty %></td>
      
       <td class="indent">Actual Mat Date: </td>
       <td class="indent"><%= @actual_mat_date.strftime("%m/%d/%Y") %></td>
@@ -146,15 +146,15 @@
       <td><nobr><h4>Remaining Term Net Gain:<small>($<%= number_with_precision(@new_cd_net_remaining, :precision => 2, :delimiter => ',') %> - $<%= number_with_precision(@old_cd_net_remaining, :precision => 2, :delimiter => ',') %>) = </small></h4>  </nobr>   </td>
       <td></td>
       <td></td>
-      <td><h4 id="bkg">$<%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></h4></td>
+      <td><center><h4 id="bkg">$<%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></h4></center></td>
 
     </tr>
 
     <%else %> 
     <tr class="danger">
-      <td><nobr><b>Remaining Term Net Gain:  </b>  </nobr> </td>
+      <td><nobr><h4>Remaining Term Net Gain:<small>($<%= number_with_precision(@new_cd_net_remaining, :precision => 2, :delimiter => ',') %> - $<%= number_with_precision(@old_cd_net_remaining, :precision => 2, :delimiter => ',') %>) = </small></h4>  </nobr>   </td>
       <td></td>
-      <td><b>$<%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></b></td>
+      <td><center><h4>$<%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></b></center></td>
       <td></td>
 
     </tr>
@@ -200,7 +200,7 @@
 
 <table class="table table-condensed">
   <tr>
-    <th></th>
+    
     <th><ins>Principal</ins></th>
     <th><ins>EWP</ins></th>
     <th><ins>Interest</ins></th>
@@ -209,7 +209,7 @@
   </tr>
 
   <tr>
-    <td></td>
+    
     <td>$<%= number_with_precision(@cd.principal, :precision => 2, :delimiter => ',') %></td>
     <td>$<%= number_with_precision(@ewp_calc, :precision => 2, :delimiter => ',') %></td>
     <td>$0.00</td>

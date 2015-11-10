@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102173741) do
+ActiveRecord::Schema.define(version: 20151110171115) do
 
   create_table "cds", force: :cascade do |t|
     t.decimal  "old_rate",                  precision: 5, scale: 3
@@ -25,11 +25,29 @@ ActiveRecord::Schema.define(version: 20151102173741) do
   end
 
   create_table "new_cds", force: :cascade do |t|
-    t.decimal  "new_rate",             precision: 5, scale: 3
-    t.decimal  "new_fee",              precision: 5, scale: 3
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.integer  "new_term",   limit: 4
+    t.decimal  "new_rate",                 precision: 5, scale: 3
+    t.decimal  "new_fee",                  precision: 5, scale: 3
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "new_term",     limit: 4
+    t.integer  "user_id",      limit: 4
+    t.string   "new_bankname", limit: 255
+  end
+
+  add_index "new_cds", ["user_id"], name: "index_new_cds_on_user_id", using: :btree
+
+  create_table "transactions", force: :cascade do |t|
+    t.string   "bankname",      limit: 255
+    t.decimal  "old_fee",                   precision: 5, scale: 3
+    t.integer  "principal",     limit: 4
+    t.decimal  "old_rate",                  precision: 5, scale: 3
+    t.date     "maturity_date"
+    t.integer  "old_penalty",   limit: 4
+    t.date     "start_date"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "user_id",       limit: 4
+    t.date     "analysis_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151102173741) do
     t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "role",                   limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

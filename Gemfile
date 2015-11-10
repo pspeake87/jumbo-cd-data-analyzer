@@ -16,7 +16,7 @@ gem 'devise'
 
 gem 'will_paginate', '~> 3.0.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-
+gem 'pundit'
 # Use mysql as the database for Active Record
 gem 'figaro', '1.0'
 # Use SCSS for stylesheets

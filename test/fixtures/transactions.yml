@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bankname: MyString
+  old_fee: 9.99
+  principal: 1
+  old_rate: 9.99
+  maturity_date: 2015-11-09 09:47:15
+  old_penalty: 1
+  start_date: 2015-11-09 09:47:15
+
+two:
+  bankname: MyString
+  old_fee: 9.99
+  principal: 1
+  old_rate: 9.99
+  maturity_date: 2015-11-09 09:47:15
+  old_penalty: 1
+  start_date: 2015-11-09 09:47:15

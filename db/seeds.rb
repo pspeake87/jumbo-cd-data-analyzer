@@ -19,6 +19,15 @@ cd = Cd.create!(
   )
 end
 
+admin = User.new(
+   name:     'Admin',
+   email:    'admin@example.com',
+   password: 'helloworld',
+   role:     'admin'
+ )
+ admin.skip_confirmation!
+ admin.save!
+
 puts "Seed finished"
 
 puts "#{Cd.count} cds created"

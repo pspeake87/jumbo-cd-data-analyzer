@@ -1,21 +1,11 @@
-class CdsController < ApplicationController
-  def index
-    @cds = Cd.search(params[:search])
-    newcd = NewCd.find(current_user)
-    @cdss = []
-    @cds.map do |cd|
-      cd.new_cd = newcd
-      @cdss << {
-        cd: cd,
-        net_gain: cd.calculate_remaining_term_net_gain
-      } 
-    end
-    @cdss = @cdss.sort_by{|cd| cd[:net_gain]}.reverse.paginate(:per_page => 20, :page => params[:page])
-  end
+class TransactionsController < ApplicationController
+    def index
+    @new_cds = NewCd.all
+   end
 
-  def show
+   def show
     @newcd = NewCd.find(current_user)
-    @cd = Cd.find(params[:id])
+    @cd = Transaction.find(current_user)
     @cd.new_cd = @newcd
 
     @fees_paid = @cd.calculate_fees_paid(@cd)
@@ -40,21 +30,26 @@ class CdsController < ApplicationController
   end
 
   def edit
-     @cd = Cd.find(params[:id])
-     
+    @transaction = Transaction.find(current_user)
+    
   end
-  
 
   def update
-     @cd = Cd.find(params[:id])
-
+   @transaction = Transaction.find(current_user)       
+   if @transaction.update_attributes(transaction_params)
      
-     if @cd.update_attributes(params.require(:cd).permit(:old_rate, :principal, :maturity_date, :old_ewp, :old_fee))
-        redirect_to @cd
+       redirect_to @transaction
      else
-       flash[:error] = "Error saving cd. Please try again."
+       flash[:error] = "Error saving topic. Please try again."
        render :edit
      end
+
+   
    end
 
+   private
+
+   def transaction_params
+    params.require(:transaction).permit(:principal, :old_rate, :old_fee, :old_term, :bankname, :start_date, :maturity_date, :old_penalty, :analysis_date)
+   end
 end
