@@ -61,27 +61,41 @@ td.btmbord {
   border-bottom:1pt solid black;
 }
 
-.bodywelcome {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+body {
+    padding-top: 70px; 
 }
 
 .navbar-fixed-top .nav {
     padding: 15px 0;
+
 }
 
 .navbar-fixed-top .navbar-brand {
     padding: 0 15px;
 }
 
+.navbar-brand img {
+        height: 51px;
+    }
  
 @media(min-width:768px) {
     body {
-        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+        padding-top: 81px;
+
     }
 
     .navbar-fixed-top .navbar-brand {
-        padding: 15px 0;
+        padding: 0px 0;
     }
+
+    .navbar-brand img {
+        height: 81px;
+        width: 150px;
+    }
+}
+
+.navbar-inverse {
+  background: #20217B;
 }
 
 

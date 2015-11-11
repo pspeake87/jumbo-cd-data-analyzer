@@ -45,7 +45,7 @@ class NewCdsController < ApplicationController
    if @newcd.update_attributes(newcd_params)
      if session[:return_to] != "http://localhost:3000/"
         
-        flash[:notice] = "New Cd was updated."
+        
         redirect_to session.delete(:return_to)
      else
         redirect_to cds_path

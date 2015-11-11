@@ -6,17 +6,17 @@
      <%= form_for @transaction do |f| %>
 
       <div class="form-group">
-        <%= f.label :bankname %>
+        <%= f.label "Bank Name" %>
         <%= f.text_field :bankname, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :old_rate %>
+        <%= f.label "Old CD Rate" %>
         <%= f.text_field :old_rate, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-       <%= f.label :old_fee %>
+       <%= f.label "Old CD Fee" %>
        <%= f.text_field :old_fee, class: 'form-control' %>
       </div>
 

@@ -8,7 +8,7 @@ class Transaction < ActiveRecord::Base
    end
 
    def calculate_net_rate(cd)
-      cd.old_rate - new_cd.new_fee
+      cd.old_rate - cd.old_fee
       
    end
 
@@ -29,12 +29,16 @@ class Transaction < ActiveRecord::Base
       ((cd.principal * (new_cd.new_fee/100)) / 365) * self.calculate_remaining_term(cd)
    end
 
+   def calculate_old_fees_remaining(cd)
+      ((cd.principal * (cd.old_fee/100)) / 365) * self.calculate_remaining_term(cd)
+   end
+
    def calculate_cd_remaining(cd)
       (cd.princ_old_rate(cd)) * self.calculate_remaining_term(cd)
    end
 
    def calculate_cd_net_remaining(cd)
-      self.calculate_cd_remaining(cd) - self.calculate_fees_remaining(cd)
+      self.calculate_cd_remaining(cd) - self.calculate_old_fees_remaining(cd)
    end
 
    def calculate_new_net_rate(cd)
@@ -71,7 +75,7 @@ class Transaction < ActiveRecord::Base
    end
 
    def calculate_old_net_gain_per_day(cd)
-      (cd.principal * ((cd.old_rate - new_cd.new_fee)/100)) / 365
+      (cd.principal * ((cd.old_rate - cd.old_fee)/100)) / 365
    end
 
    def calculate_new_net_gain_per_day(cd)

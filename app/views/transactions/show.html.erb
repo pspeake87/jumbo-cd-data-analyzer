@@ -9,8 +9,13 @@
 
 
   <div id="edit-button">
+    
     <span style="display: inline;">
-      <%= link_to "Edit New Cd", edit_new_cd_path(@newcd), class: 'btn btn-success' %>
+      <%= link_to "Edit Old CD", edit_transaction_path(@cd), class: 'btn btn-success' %>
+    </span>
+
+    <span style="display: inline;">
+      <%= link_to "Edit New CD", edit_new_cd_path(@newcd), class: 'btn btn-success' %>
     </span>
     
   </div>
@@ -19,7 +24,8 @@
 
 
   <div class="row">
-  <div class="col-xs-6"><center><h4>Old CD</h4></center></div>
+  <div class="col-xs-6"><center><h4>Old CD</h4></center>
+    </div>
   <div class="col-xs-6"><center><h4>New CD</h4></center></div>
   </div>
 
@@ -113,7 +119,7 @@
     </tr>
     <tr>
       <td>Fees Remaining<br><br></td>
-      <td class="vertline">$<%= number_with_precision(@fees_remaining, :precision => 2, :delimiter => ',') %></td>
+      <td class="vertline">$<%= number_with_precision(@old_fees_remaining, :precision => 2, :delimiter => ',') %></td>
       
       <td></td>
       <td></td>
@@ -143,10 +149,12 @@
     
     <% if @remaining_term_net_gain > 0 %>
     <tr class="success">
-      <td><nobr><h4>Remaining Term Net Gain:<small>($<%= number_with_precision(@new_cd_net_remaining, :precision => 2, :delimiter => ',') %> - $<%= number_with_precision(@old_cd_net_remaining, :precision => 2, :delimiter => ',') %>) = </small></h4>  </nobr>   </td>
+      <td>
+        <nobr><h4>Remaining Term Net Gain:<small>($<%= number_with_precision(@new_cd_net_remaining, :precision => 2, :delimiter => ',') %> - $<%= number_with_precision(@old_cd_net_remaining, :precision => 2, :delimiter => ',') %>) =  </small><b id="bkg"> $<%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></b></h4>  </nobr> 
+      </td>
       <td></td>
       <td></td>
-      <td><center><h4 id="bkg">$<%= number_with_precision(@remaining_term_net_gain, :precision => 2, :delimiter => ',') %></h4></center></td>
+      <td></td>
 
     </tr>
 

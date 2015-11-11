@@ -13,6 +13,7 @@ class TransactionsController < ApplicationController
     @analysis_date = @cd.calculate_analysis_date(@cd)
     @remaining_term = @cd.calculate_remaining_term(@cd)
     @ewp_calc = @cd.calculate_ewp(@cd)
+    @old_fees_remaining = @cd.calculate_old_fees_remaining(@cd)
     @fees_remaining = @cd.calculate_fees_remaining(@cd)
     @old_cd_remaining = @cd.calculate_cd_remaining(@cd)
     @old_cd_net_remaining = @cd.calculate_cd_net_remaining(@cd)
