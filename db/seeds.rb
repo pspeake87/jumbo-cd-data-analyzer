@@ -19,7 +19,7 @@ cd = Cd.create!(
   )
 end
 
-admin = User.new(
+admin = User.create!(
    name:     'Admin',
    email:    'admin@example.com',
    password: 'helloworld',

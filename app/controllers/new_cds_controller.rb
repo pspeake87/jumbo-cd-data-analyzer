@@ -34,25 +34,34 @@ class NewCdsController < ApplicationController
    if current_user
       @newcd = NewCd.find(current_user) 
    else
-      redirect_to home
+      @newcd = NewCd.find(session[:guest_user_id] ||= create_guest_user.id)
    end
 
  end
 
 
  def update
-   @newcd = NewCd.find(current_user)       
-   if @newcd.update_attributes(newcd_params)
-     if session[:return_to] != "http://localhost:3000/"
-        
-        
-        redirect_to session.delete(:return_to)
+   if current_user
+     @newcd = NewCd.find(current_user)       
+     if @newcd.update_attributes(newcd_params)
+       if session[:return_to] != "http://localhost:3000/"
+          
+          redirect_to session.delete(:return_to)
+       else
+          redirect_to cds_path
+      end
      else
-        redirect_to cds_path
-    end
+       flash[:error] = "Error saving cd. Please try again."
+       render :edit
+     end
    else
-     flash[:error] = "Error saving cd. Please try again."
-     render :edit
+     @newcd = NewCd.find(session[:guest_user_id] ||= create_guest_user.id)
+     if @newcd.update_attributes(newcd_params)
+       redirect_to session.delete(:return_to)
+     else
+       flash[:error] = "Error saving cd. Please try again."
+       render :edit
+     end
    end
  end
 

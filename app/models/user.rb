@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   def build_newcd
-      NewCd.create(user: self, new_fee: 1, new_rate: 1, new_term: 5, new_bankname: "new bankname")
+      NewCd.create(user: self, new_fee: 0, new_rate: 0, new_term: 0, new_bankname: "New Bank's Name'")
   end
 
   def build_transaction
-      Transaction.create(user: self)
+      Transaction.create(user: self, old_penalty: 0, maturity_date:  Time.now.strftime('%Y-%m-%d'), start_date:  Time.now.strftime('%Y-%m-%d'), principal: 0, old_fee: 0, old_rate: 0, bankname: "Bankname")
   end
 
   def admin?

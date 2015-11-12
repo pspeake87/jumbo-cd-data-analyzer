@@ -3,7 +3,11 @@
     <div class="row">
       <div class="col-lg-12">
         <h1>Welcome to Jumbo CD Swap Calculator</h1>
-        
+
+
+
+        <% if current_or_guest_user %>
+  
            <% if current_user %>
              Hello <%= current_user.name %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
              
@@ -28,10 +32,20 @@
 
            <% else %>
 
-             <h4>Please Sign in to use the CD Swap Calculator!</h4>
+
+
+
+          <h4>Click here to get started!</h4>
+             <span style="display: inline;">
+                    <%= link_to "CD Swap", edit_transaction_path(@transaction), class: 'btn btn-success' %>
+             </span>
+
+             <h4>Or click here to sign in!</h4>
              <div id="edit-button">
                 <span style="display: inline;">
              <%= link_to "Sign In", new_user_session_path, class: 'btn btn-success' %>
+           <% end %>
+
            <% end %>
       </div>
     </div>
