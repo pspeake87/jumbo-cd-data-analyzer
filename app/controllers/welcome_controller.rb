@@ -7,9 +7,9 @@ class WelcomeController < ApplicationController
     @newcd = NewCd.find(current_user)
     @transaction = Transaction.find(current_user)
     else
+      @newcd = NewCd.find(session[:guest_user_id])
+      @transaction = Transaction.find(session[:guest_user_id])
     
-    @newcd = NewCd.find(session[:guest_user_id] ||= create_guest_user.id)
-    @transaction = Transaction.find(session[:guest_user_id] ||= create_guest_user.id)
     
     end
 

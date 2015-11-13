@@ -5,7 +5,7 @@
         <h1>Welcome to Jumbo CD Swap Calculator</h1>
 
 
-
+        <!-- current_or_guest_user is in the application controller -->
         <% if current_or_guest_user %>
   
            <% if current_user %>
@@ -34,8 +34,8 @@
 
 
 
-
-          <h4>Click here to get started!</h4>
+          <!-- if its a guest user and not an actual signed up user -->
+           <h4>Click here to get started!</h4>
              <span style="display: inline;">
                     <%= link_to "CD Swap", edit_transaction_path(@transaction), class: 'btn btn-success' %>
              </span>
@@ -46,7 +46,7 @@
              <%= link_to "Sign In", new_user_session_path, class: 'btn btn-success' %>
            <% end %>
 
-           <% end %>
+        <% end %>
       </div>
     </div>
   </div>

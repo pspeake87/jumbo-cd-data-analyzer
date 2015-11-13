@@ -5,8 +5,6 @@ class NewCdsController < ApplicationController
 
   def show
     @new_cd = NewCd.find(params[:id])
-
-    
   end
 
   def new
@@ -30,11 +28,12 @@ class NewCdsController < ApplicationController
   end
 
  def edit
+   # stores url of previous page
    session[:return_to] = request.referer
    if current_user
       @newcd = NewCd.find(current_user) 
    else
-      @newcd = NewCd.find(session[:guest_user_id] ||= create_guest_user.id)
+      @newcd = NewCd.find(session[:guest_user_id])
    end
 
  end
@@ -55,7 +54,7 @@ class NewCdsController < ApplicationController
        render :edit
      end
    else
-     @newcd = NewCd.find(session[:guest_user_id] ||= create_guest_user.id)
+     @newcd = NewCd.find(session[:guest_user_id])
      if @newcd.update_attributes(newcd_params)
        redirect_to session.delete(:return_to)
      else

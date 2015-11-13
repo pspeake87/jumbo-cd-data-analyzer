@@ -9,11 +9,12 @@ class TransactionsController < ApplicationController
       @cd = Transaction.find(current_user)
       @cd.new_cd = @newcd
     else
-      @newcd = NewCd.find(session[:guest_user_id] ||= create_guest_user.id)
-      @cd = Transaction.find(session[:guest_user_id] ||= create_guest_user.id)
+      # Guest user
+      @newcd = NewCd.find(session[:guest_user_id])
+      @cd = Transaction.find(session[:guest_user_id])
       @cd.new_cd = @newcd
     end
-
+    
     @fees_paid = @cd.calculate_fees_paid(@cd)
     @net_rate = @cd.calculate_net_rate(@cd)
     @analysis_date = @cd.calculate_analysis_date(@cd)
@@ -42,7 +43,7 @@ class TransactionsController < ApplicationController
     if current_user
     @transaction = Transaction.find(current_user)
     else
-    @transaction = Transaction.find(session[:guest_user_id] ||= create_guest_user.id)
+    @transaction = Transaction.find(session[:guest_user_id])
     end
   end
 
@@ -57,7 +58,7 @@ class TransactionsController < ApplicationController
           render :edit
       end
    else 
-       @transaction = Transaction.find(session[:guest_user_id] ||= create_guest_user.id) 
+       @transaction = Transaction.find(session[:guest_user_id]) 
        if @transaction.update_attributes(transaction_params)
      
           redirect_to @transaction
