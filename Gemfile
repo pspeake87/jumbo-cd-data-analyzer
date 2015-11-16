@@ -3,9 +3,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.3'
 
 group :production do
-   gem 'pg'
-   gem 'rails_12factor'
-   gem 'mysql2', '~> 0.3.18'
+  gem 'pg'
+  gem 'rails_12factor'
+  gem 'unicorn'
+  gem 'unicorn-rails'
+   # gem 'mysql2', '~> 0.3.18'
  end
  
  group :development do
@@ -13,7 +15,6 @@ group :production do
  end
 
 gem 'devise'
-gem 'capistrano', '~> 3.4.0'
 gem 'will_paginate', '~> 3.0.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'pundit'
@@ -55,5 +56,12 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn'
+
 end
 
