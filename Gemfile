@@ -13,7 +13,7 @@ group :production do
  end
 
 gem 'devise'
-
+gem 'capistrano', '~> 3.4.0'
 gem 'will_paginate', '~> 3.0.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'pundit'
