@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :transactions
 
   resources :new_cds
-
+  
+  resources :users
+  
   resources :cds
 
   as :user do

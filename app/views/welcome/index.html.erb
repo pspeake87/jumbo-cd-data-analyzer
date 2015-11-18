@@ -7,7 +7,7 @@
 
         <!-- current_or_guest_user is in the application controller -->
         <% if current_or_guest_user %>
-  
+          
            <% if current_user %>
              Hello <%= current_user.name %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
              
@@ -15,12 +15,13 @@
            
             <h4>To Enter the New CD click here</h4>
              <div id="edit-button">
-                <span style="display: inline;">
-                    <%= link_to "Enter New Cd", edit_new_cd_path(@newcd), class: 'btn btn-success' %>
-                </span>
-                <span style="display: inline;">
-                    <%= link_to "Blank Slate", edit_transaction_path(@transaction), class: 'btn btn-success' %>
-                </span>
+               <span style="display: inline;">
+                    <%= link_to "CD Swap", edit_transaction_path(@transaction), class: 'btn btn-success' %>
+               </span>
+               <span style="display: inline;">
+                    <%= link_to "All Users", users_path, class: 'btn btn-success' %>
+               </span>
+
              </div>
 
              <% if policy(@newcd).index? %>
@@ -35,15 +36,28 @@
 
 
           <!-- if its a guest user and not an actual signed up user -->
-           <h4>Click here to get started!</h4>
-             <span style="display: inline;">
-                    <%= link_to "CD Swap", edit_transaction_path(@transaction), class: 'btn btn-success' %>
-             </span>
+           <h4>Type in your name and click "CD Swap" to get started!</h4>
 
-             <h4>Or click here to sign in!</h4>
-             <div id="edit-button">
-                <span style="display: inline;">
-             <%= link_to "Sign In", new_user_session_path, class: 'btn btn-success' %>
+
+
+           <%= form_for @user do |f| %>
+                <div class="form-group">
+                
+                <%= f.text_field :name,  class: 'form-control' %>
+                </div>
+
+                <%= f.submit "CD Swap", class: 'btn btn-success' %>
+
+            <% end %>
+           
+           <br>
+
+
+            <p> or <%= link_to "Sign In", new_user_session_path %></p>
+
+             
+
+             
            <% end %>
 
         <% end %>

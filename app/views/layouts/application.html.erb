@@ -34,15 +34,14 @@
           </li>
           <li>
             <% if current_user %>
-            <%= link_to "CD List", cds_path %>
+            <%= link_to "Guest List", users_path %>
             <% end%>
           </li>
-
         </ul>
 
      
    </div>
- </div>
+ 
  </nav>
 <% if flash[:notice] %>
      <div class="alert alert-success">
@@ -60,9 +59,10 @@
        <%= flash[:alert] %>
      </div>
      <% end %>
+
  <%= yield %>
 
-</div>
+
 
 </body>
 </html>

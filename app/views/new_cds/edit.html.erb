@@ -1,6 +1,9 @@
 <br>
 <br>
 <div class="container">
+
+  <h2> Please Enter your <b>New CD's</b> information</h2>
+  <br>
 <div class="row">
 
 <div class="col-md-2">
@@ -8,22 +11,23 @@
 
       <div class="form-group">
        <%= f.label :new_bankname %>
-       <%= f.text_field :new_bankname, class: 'form-control' %>
+       <%= f.text_field :new_bankname, autofocus: true, class: 'form-control',
+       placeholder: "Enter the Bank's name" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :new_rate %>
-        <%= f.text_field :new_rate, class: 'form-control' %>
+        <%= f.label "Rate %" %>
+        <%= f.text_field :new_rate, class: 'form-control', placeholder: "Enter the Rate" %>
       </div>
 
       <div class="form-group">
-       <%= f.label :new_fee %>
-       <%= f.text_field :new_fee, class: 'form-control' %>
+       <%= f.label "Fee %" %>
+       <%= f.text_field :new_fee, class: 'form-control', placeholder: "Enter the Fee" %>
       </div>
 
        <div class="form-group">
        <%= f.label "#{:new_term} (in years)" %>
-       <%= f.text_field :new_term, class: 'form-control' %>
+       <%= f.text_field :new_term, class: 'form-control', placeholder: "Enter the Amount of Years" %>
        </div>
 
       <%= f.submit "Submit", class: 'btn btn-success' %>

@@ -5,8 +5,9 @@ class TransactionsController < ApplicationController
 
    def show
     if current_user
-      @newcd = NewCd.find(current_user)
-      @cd = Transaction.find(current_user)
+      @user = User.find(params[:id])
+      @newcd = NewCd.find(@user)
+      @cd = Transaction.find(@user)
       @cd.new_cd = @newcd
     else
       # Guest user
@@ -52,7 +53,7 @@ class TransactionsController < ApplicationController
       @transaction = Transaction.find(current_user)       
       if @transaction.update_attributes(transaction_params)
      
-          redirect_to @transaction
+          redirect_to edit_new_cd_path(current_user)
       else
           flash[:error] = "Error saving topic. Please try again."
           render :edit
@@ -61,7 +62,7 @@ class TransactionsController < ApplicationController
        @transaction = Transaction.find(session[:guest_user_id]) 
        if @transaction.update_attributes(transaction_params)
      
-          redirect_to @transaction
+          redirect_to edit_new_cd_path(session[:guest_user_id])
        else
           flash[:error] = "Error saving topic. Please try again."
           render :edit

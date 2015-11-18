@@ -1,0 +1,16 @@
+<div class="container">
+  <br>
+  <h2>Guest List</h2>
+<br>
+<br>
+
+<%= form_tag users_path, :method => 'get', :id => "users_search", remote: true do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+
+  <div id="users"><%= render 'users' %></div>
+  
+  <% end %>
+</div>

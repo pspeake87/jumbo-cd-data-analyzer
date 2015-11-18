@@ -45,6 +45,19 @@ namespace :deploy do
     end
   end
 
+  desc 'reset db'
+  task :dbseed do
+    on roles(:app), in: :sequence, wait: 5 do
+      within "#{deploy_to}/current" do
+        with rails_env: :production do
+          # commands in this block execute with the environment
+          # variable RAILS_ENV=production
+          rake   "db:seed"
+        end
+      end
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     # Reload unicorn with capistrano3-unicorn hook

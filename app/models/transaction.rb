@@ -2,6 +2,14 @@ class Transaction < ActiveRecord::Base
    belongs_to :user
    attr_accessor :new_cd   
 
+   validates :old_rate, numericality: { less_than: 10 }, presence: true, :on => :update
+   validates :old_fee, numericality: { less_than: 10 },presence: true, :on => :update
+   validates :principal, numericality: { less_than: 250000 }, presence: true, :on => :update
+   validates :old_penalty, presence: true, :on => :update
+   validates :start_date,  presence: true, :on => :update
+   validates :maturity_date, presence: true, :on => :update
+   validates :analysis_date, presence: true, :on => :update
+
    def calculate_fees_paid(cd)
 
       ((cd.principal * (cd.old_fee/100)) / 365) * (self.old_cd_start_date(cd))
@@ -96,12 +104,6 @@ class Transaction < ActiveRecord::Base
        self.calculate_actual_mat_date - self.analysis_date
    end
 
-   def self.search(search)
-       if search
-         where('bankname LIKE ?', "%#{search}%")
-       else
-         all
-       end
-   end
+  
 
 end

@@ -9,7 +9,7 @@ class NewCdsController < ApplicationController
 
   def new
     @new_cd = NewCd.new
-    authorize @new_cd
+    
 
   end
 
@@ -17,7 +17,7 @@ class NewCdsController < ApplicationController
 
    @new_cd = NewCd.new(newcd_params)
    @new_cd.user = current_user
-   authorize @new_cd
+   
 
      if @new_cd.save
        redirect_to cds_path
@@ -28,8 +28,7 @@ class NewCdsController < ApplicationController
   end
 
  def edit
-   # stores url of previous page
-   session[:return_to] = request.referer
+   
    if current_user
       @newcd = NewCd.find(current_user) 
    else
@@ -43,12 +42,8 @@ class NewCdsController < ApplicationController
    if current_user
      @newcd = NewCd.find(current_user)       
      if @newcd.update_attributes(newcd_params)
-       if session[:return_to] != "http://localhost:3000/"
-          
-          redirect_to session.delete(:return_to)
-       else
-          redirect_to cds_path
-      end
+      
+       redirect_to transaction_path(current_user)
      else
        flash[:error] = "Error saving cd. Please try again."
        render :edit
@@ -56,7 +51,8 @@ class NewCdsController < ApplicationController
    else
      @newcd = NewCd.find(session[:guest_user_id])
      if @newcd.update_attributes(newcd_params)
-       redirect_to session.delete(:return_to)
+
+       redirect_to transaction_path(session[:guest_user_id])
      else
        flash[:error] = "Error saving cd. Please try again."
        render :edit

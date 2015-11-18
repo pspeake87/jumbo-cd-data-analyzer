@@ -6,15 +6,15 @@ class WelcomeController < ApplicationController
     if current_user
     @newcd = NewCd.find(current_user)
     @transaction = Transaction.find(current_user)
+    
     else
+      @user = User.find(session[:guest_user_id])
       @newcd = NewCd.find(session[:guest_user_id])
       @transaction = Transaction.find(session[:guest_user_id])
     
     
     end
-
-    
-
   end
 
+  
 end

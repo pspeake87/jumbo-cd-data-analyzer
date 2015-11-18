@@ -6,8 +6,8 @@
 //= require bootstrap
 $(function() {
    
-    $("#cds_search input").keyup(function() {
-    $.get($("#cds_search").attr("action"), $("#cds_search").serialize(), null, "script");
+    $("#users_search input").keyup(function() {
+    $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
     return false;
   });
 }); 

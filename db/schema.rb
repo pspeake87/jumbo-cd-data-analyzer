@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20151110171115) do
     t.decimal  "new_fee",                  precision: 5, scale: 3
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
-    t.integer "new_term",     limit: 4           
+    t.integer  "new_term",     limit: 4
     t.integer  "user_id",      limit: 4
     t.string   "new_bankname", limit: 255
   end

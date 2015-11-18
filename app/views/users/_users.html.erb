@@ -1,0 +1,11 @@
+<br>
+<br>
+<% if current_user %>
+
+<ol>
+  <% @users.each do |user| %>
+    <li><h4><%= link_to user.name, transaction_path(user) %> </h4> </li>
+  <% end %>
+</ol>
+
+<% end %>
