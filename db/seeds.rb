@@ -10,8 +10,8 @@ require 'faker'
 
 admin = User.new(
    name:     'Admin',
-   email:    'admin@example.com',
-   password: 'helloworld',
+   email:    'admin@jumbocd.com',
+   password: 'mike7365',
    role:     'admin'
  )
  admin.skip_confirmation!
