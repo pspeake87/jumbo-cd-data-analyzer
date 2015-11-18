@@ -46,13 +46,13 @@ namespace :deploy do
   end
 
   desc 'reset db'
-  task :dbseed do
+  task :dbreset do
     on roles(:app), in: :sequence, wait: 5 do
       within "#{deploy_to}/current" do
         with rails_env: :production do
           # commands in this block execute with the environment
           # variable RAILS_ENV=production
-          rake   "db:seed"
+          rake   "db:reset"
         end
       end
     end
